@@ -21,5 +21,11 @@ for i in range(10):
 f.close()
 with open("fichier.txt",'r') as f :
     L=[]
-    L=(f.read()).split("\n")
+    L=(f.read()).split("\n") #you can use
     print(L)
+#just split() with no parameters means any white space aith any length
+#you can use readlines and split() also
+liste=[line.strip() for line in open('fichier.txt','r')]
+print(liste)
+#rq split("\n") et splitlines sont equivalentes
+#there is a function called readlines() that transform a string into a list but keeps \n
