@@ -1,10 +1,10 @@
 #Number Plate Recognition with OpenCV and EasyOCR
 from easyocr import Reader
 import cv2
-
-car = cv2.imread('cars\CarTn.jpg')
+car = cv2.imread('cars\car14.jpg')
 car = cv2.resize(car, (800, 600))
 gray = cv2.cvtColor(car, cv2.COLOR_BGR2GRAY)
+gray = cv2.bitwise_not(gray)
 blur = cv2.GaussianBlur(gray, (5,5), 0)
 edged = cv2.Canny(blur, 10, 200)
 cont, _ = cv2.findContours(edged, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -18,7 +18,7 @@ for c in cont:
 (x, y, w, h) = cv2.boundingRect(plate_cnt)
 plate = gray[y:y + h, x:x + w]
 
-reader = Reader(['ar'] ,  gpu=False, verbose=False)
+reader = Reader(['en'] ,  gpu=False, verbose=False)
 detection = reader.readtext(plate)
 print(detection)
 
